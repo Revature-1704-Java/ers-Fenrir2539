@@ -50,7 +50,7 @@ public class ReimbursementDAO {
 	} //end getAllEmployees
 	
 	//get all reimbursements for manager
-	public List<Reimbursement> getAllReimbursementsManager(int id) {
+	public List<Reimbursement> getAllReimbursementsManager() {
 		PreparedStatement ps = null;
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		Reimbursement reimbursement = null;

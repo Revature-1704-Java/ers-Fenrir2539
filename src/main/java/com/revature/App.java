@@ -1,6 +1,7 @@
 package com.revature;
 
 import java.sql.Date;
+import java.text.DateFormat;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,6 +14,10 @@ import com.revature.dao.ReimbursementDAO;
 import com.revature.parser.Parser;
 
 public class App {
+	
+	//git add .
+	//git commit
+	//git push -f origin master
 	
 	private Parser parser;
 	private boolean loggedIn = false;
@@ -28,10 +33,10 @@ public class App {
 		//dao.insertEmployee(e);
 		//--
 		//ReimbursementDAO rDao = new ReimbursementDAO();
-		//Reimbursement r4 = new Reimbursement(7, 19.99, new Date(2017, 11, 11), null, "OCA Study Guide", 3, 2, "open");
+		//Reimbursement r4 = new Reimbursement(1, 1337.347, null, null, "OCA Study Guide", 3, 2, "open");
 		//rDao.insertReimbursement(r4);
 		App application = new App();
-		System.out.println("Please log in with login command");
+		System.out.println("Please log in with login command: login");
 		System.out.println("Try aSwan/aSon or meh/rab");
 		application.run();
 	}
@@ -122,8 +127,27 @@ public class App {
     }
     
     public boolean newReimbursement() {
-    	System.out.println("Out of project scope, try again later");
-    	return false;
+    	boolean flag = true;
+    	Scanner reimScanner = new Scanner(System.in);
+    	//get id? how....
+    	System.out.print("Enter amount: ");
+        String doubleStr= reimScanner.nextLine();
+        double amount = Double.parseDouble(doubleStr);
+        //Get Date        
+        System.out.print("Describe your expense: ");
+        String desc= reimScanner.nextLine();
+        int authorId = loggedInEmployee.getId();
+        
+        try {
+        	ReimbursementDAO rDao = new ReimbursementDAO();
+        	Reimbursement r = new Reimbursement(999, amount, null, null, desc, authorId, 2, "open");
+    		rDao.insertReimbursement(r);
+        }
+        catch(Exception e) {
+        	System.out.println("Failed to make Reimbursement");
+        	flag = false;
+        }
+    	return flag;
     }
     
     public boolean viewReimbursements() {
@@ -131,7 +155,7 @@ public class App {
     	//If manager
     	if(loggedInEmployee.getRole().equals("manager")) {
     		ReimbursementDAO d = new ReimbursementDAO();
-        	reimbursementList = d.getAllReimbursementsManager(loggedInEmployee.getId());
+        	reimbursementList = d.getAllReimbursementsManager();
         	for (Reimbursement reim : reimbursementList) {
     			System.out.println(reim);
     		}
