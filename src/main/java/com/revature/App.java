@@ -31,7 +31,8 @@ public class App {
 		//Reimbursement r4 = new Reimbursement(7, 19.99, new Date(2017, 11, 11), null, "OCA Study Guide", 3, 2, "open");
 		//rDao.insertReimbursement(r4);
 		App application = new App();
-		System.out.println("Please log in");
+		System.out.println("Please log in with login command");
+		System.out.println("Try aSwan/aSon or meh/rab");
 		application.run();
 	}
 	
@@ -75,10 +76,21 @@ public class App {
             newReimbursement();
         }
         else if (command.getString().equals("viewReim")) {
-            viewReimbursements();
+            if(loggedInEmployee != null) {
+            	viewReimbursements();
+            }
+            else {
+            	System.out.println("login first");
+            }
         }
         else if (command.getString().equals("viewEmp")) {
-        	viewEmployees();
+        	 if(loggedInEmployee != null) {
+        		 viewEmployees();
+             }
+             else {
+             	System.out.println("login first");
+             }
+       
         }
         // else command not recognized.
         return wantToQuit;
@@ -110,7 +122,7 @@ public class App {
     }
     
     public boolean newReimbursement() {
-    	//Create a new reimbursement
+    	System.out.println("Out of project scope, try again later");
     	return false;
     }
     
@@ -139,6 +151,7 @@ public class App {
     }
     
     public boolean viewEmployees() {
+    	boolean flag = false;
     	//reject if not manager
     	if(loggedInEmployee.getRole().equals("manager")) {
     		EmployeeDAO d = new EmployeeDAO();
@@ -146,11 +159,12 @@ public class App {
     		for (Employee emp : employeeList) {
     			System.out.println(emp);
     		}
+    		flag = true;
     	}
     	else {
     		System.out.println("You cannot view this information unless you are a manager");
     	}
-    	return false;
+    	return flag;
     }
 
 }
