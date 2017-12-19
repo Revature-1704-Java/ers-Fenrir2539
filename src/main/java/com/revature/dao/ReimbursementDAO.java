@@ -20,8 +20,9 @@ public class ReimbursementDAO {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		Reimbursement reimbursement = null;
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "SELECT * FROM REIMBURSEMENT WHERE AuthorId = id";
+			String sql = "SELECT * FROM REIMBURSEMENT WHERE AUTHORID=?";
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
 			//Add any variable to prepared stmts
 			ResultSet rs = ps.executeQuery();
 			

@@ -20,6 +20,7 @@ public class App {
 	private int currentId = 0;
 	private Employee loggedInEmployee;
 	private List<Employee> employeeList;
+	private List<Reimbursement> reimbursementList;
 
 	public static void main(String[] args) {
 		//EmployeeDAO dao = new EmployeeDAO();
@@ -114,10 +115,27 @@ public class App {
     }
     
     public boolean viewReimbursements() {
+    	boolean flag = false;
     	//If manager
-    	
-    	//If employee
-    	return false;
+    	if(loggedInEmployee.getRole().equals("manager")) {
+    		ReimbursementDAO d = new ReimbursementDAO();
+        	reimbursementList = d.getAllReimbursementsManager(loggedInEmployee.getId());
+        	for (Reimbursement reim : reimbursementList) {
+    			System.out.println(reim);
+    		}
+        	flag = true;
+    	}
+    	else {
+    		//If employee
+    		ReimbursementDAO d = new ReimbursementDAO();
+    		reimbursementList = d.getAllReimbursements(loggedInEmployee.getId());
+    		System.out.println("Id = "+loggedInEmployee.getId());
+    		for (Reimbursement reim : reimbursementList) {
+    			System.out.println(reim);
+    		}
+    		flag = true;
+    	}
+    	return flag;
     }
     
     public boolean viewEmployees() {
