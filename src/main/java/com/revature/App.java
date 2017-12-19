@@ -22,30 +22,13 @@ public class App {
 	private List<Employee> employeeList;
 
 	public static void main(String[] args) {
-		EmployeeDAO dao = new EmployeeDAO();
+		//EmployeeDAO dao = new EmployeeDAO();
 		//Employee e = new Employee(1, "aSwan", "aSon", "Alex", "Swanson", "employee");
-		//Employee e = new Employee(2, "meh", "rab", "Mehrab", "Rahman", "manager");
-		Employee e = new Employee(3, "aGirl", "1234", "A", "Girl", "employee");
-		Employee e2 = new Employee(4, "aGuy", "1234", "A", "Guy", "employee");
-		dao.insertEmployee(e);
-		dao.insertEmployee(e2);
-		
-		ReimbursementDAO rDao = new ReimbursementDAO();
-		//Reimbursement r = new Reimbursement(1, 9.95, new Date(2017, 11, 4), new Date(2017, 11, 11), "Enthuware Software", 1, 2, "approved");
-		//Reimbursement r = new Reimbursement(2, 15.99, new Date(2017, 11, 12), null, "Another Expense", 1, 2, "open");
-		//Reimbursement r2 = new Reimbursement(3, 15.99, new Date(2017, 11, 4), new Date(2017, 11, 11), "Pizza party", 1, 2, "denied");
-		Reimbursement r = new Reimbursement(4, 9.95, new Date(2017, 11, 5), new Date(2017, 11, 11), "Enthuware Software", 3, 2, "approved");
-		Reimbursement r2 = new Reimbursement(5, 9.95, new Date(2017, 11, 6), new Date(2017, 11, 11), "Enthuware Software", 4, 2, "approved");
-		Reimbursement r3 = new Reimbursement(6, 99.99, new Date(2017, 11, 7), new Date(2017, 11, 15), "Code Fuel --Coffee", 4, 2, "denied");
-		Reimbursement r4 = new Reimbursement(7, 19.99, new Date(2017, 11, 11), null, "OCA Study Guide", 3, 2, "open");
-		rDao.insertReimbursement(r);
-		rDao.insertReimbursement(r2);
-		rDao.insertReimbursement(r3);
-		rDao.insertReimbursement(r4);
-		//If employee
-			//reutrn all personal reimbursements
-		//If manager
-			//reutrn all reimbursements
+		//dao.insertEmployee(e);
+		//--
+		//ReimbursementDAO rDao = new ReimbursementDAO();
+		//Reimbursement r4 = new Reimbursement(7, 19.99, new Date(2017, 11, 11), null, "OCA Study Guide", 3, 2, "open");
+		//rDao.insertReimbursement(r4);
 		App application = new App();
 		System.out.println("Please log in");
 		application.run();
